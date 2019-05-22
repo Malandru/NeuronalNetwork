@@ -2,7 +2,9 @@ from string import uppercase
 from Synapse import Synapse
 from Neuron import Neuron
 from threading import Lock
+import threading
 import stdio
+import copy
 
 class NeuronalNetwork():
     def __init__(self):

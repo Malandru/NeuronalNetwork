@@ -5,8 +5,9 @@ import numpy as np
 
 class Neuron(Thread):
     def __init__(self, name, lock):
-        Thread.__init__(self, args=(lock))
-        self.name = name
+        self.lock = lock
+        Thread.__init__(self, args=(self.lock))
+        self.neuronName = name
         self.synapse = Synapse(lock) # Se va a encargar de recoger las entradas y los pesos
         self.inputs = []
         self.weights = []
@@ -20,14 +21,16 @@ class Neuron(Thread):
 
     def readUserInputs(self):
         if self.synapse.userInputs > 0:
-            print '\t\t\tENTRADAS DE NEURONA', self.name
+            print '\t\t\tENTRADAS DE NEURONA', self.neuronName
             self.synapse.readUserInputs()
+        Thread.__init__(self, args=(self.lock))
 
     def run(self):
         while not self.synapse.allInputsReady(): pass
         self.inputs = self.synapse.getInputs()
         self.weights = self.synapse.getWeights()
         self.processInputs()
+        self.synapse.resetInputs()
 
 
     def processInputs(self):
