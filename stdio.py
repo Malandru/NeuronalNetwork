@@ -1,34 +1,29 @@
 from math import asin, atan
 
-def leerInt(msg, rango):
+def readInt(msg, domain):
     while True:
         try:
             x = raw_input(msg)
             if x == 'continuar': return None
             x = int(x)
-            if eval(rango):
+            if eval(domain):
                 return x
             else:
-                print '\nError: Fuera de rango [{}]'.format(rango)
+                print '\nError: Fuera de rango [{}]'.format(domain)
         except NameError:
             print '\nError: Tienes que ingresar un numero'
         print 'Intenta de nuevo...'
 
-def leerExpresion(msg, tipo):
+def readExpression(msg, desiredType):
     s, x = 0.0, 0.0
     while True:
-        expresion = raw_input(msg)
+        expression = raw_input(msg)
         try:
-            if expresion == 'continuar': return None
-            if type(eval(expresion)) == tipo:
-                return expresion
+            if expression == 'break': return None
+            typeValue = type(eval(expression))
+            if typeValue == int: typeValue = float
+            if typeValue == desiredType:
+                return expression
         except:
             print '\nError: Favor de leer las reglas'
             print 'Intente de nuevo...'
-
-def leerLetra(msg):
-    while True:
-        letra = raw_input(msg)
-        if letra.isalpha():
-            return letra[0].upper()
-        print '\nError: Ingresa una letra'
