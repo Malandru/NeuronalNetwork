@@ -1,4 +1,2 @@
 .vscode/
-permuta.py
 *.pyc
-__pycache__/
