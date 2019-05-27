@@ -32,7 +32,6 @@ class Neuron(Thread):
         self.processInputs()
         self.synapse.resetInputs()
 
-
     def processInputs(self):
         s = np.dot(self.inputs, self.weights)
         x = float('nan')
@@ -42,8 +41,9 @@ class Neuron(Thread):
                 break
         else: x = s
         self.output = eval(self.function)
-        if self.branches == []: print self.output
-        else: self.sendOutput()
+        print '{} --> {}'.format(self.neuronName, self.output)
+        if self.branches != []:
+            self.sendOutput()
 
     def sendOutput(self):
         index, lim = 0, len(self.branches)
