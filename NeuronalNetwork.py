@@ -32,7 +32,7 @@ class NeuronalNetwork():
         print '========================\n\n'
 
     def readSynapse(self, neuron):
-        totalInputs = stdio.readInt('Total de entradas: ', 'x => 1')
+        totalInputs = stdio.readInt('Total de entradas: ', 'x >= 1')
         neuron.synapse.setTotalInputs(totalInputs)
 
     def readConfiguration(self, neuron):
